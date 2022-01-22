@@ -1,6 +1,6 @@
 require('dotenv').config();
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 const app = express();
@@ -11,8 +11,9 @@ if (PORT == null || PORT == "") {
 }
 
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+
 
 app.get("/", (req, res) => {
     try {
