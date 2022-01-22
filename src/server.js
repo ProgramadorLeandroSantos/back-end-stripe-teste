@@ -27,14 +27,14 @@ app.get("/", (req, res) => {
 
 app.post("/pay", async (req, res) => {
     try {
-        const {name} = req.body;
-        if(!name) return res.json({message: "Please enter your name"})
+        const {user_name} = req.body;
+        if(!user_name) return res.json({message: "Please enter your name"})
 
          const paymentIntent = await stripe.paymentIntents.create({
              amount: Math.round(50 * 100),
              currency: 'brl',
              payment_method_types: ["card"],
-             metadata: {name}
+             metadata: {name:user_name}
          });
 
          const clientSecret = paymentIntent.client_secret;
