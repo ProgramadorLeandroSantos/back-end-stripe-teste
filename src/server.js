@@ -27,18 +27,19 @@ app.get("/", (req, res) => {
 
 app.post("/pay", async (req, res) => {
     try {
-        const {user_name} = await req.body;
-        if(!user_name) return res.json({message: "Please enter your name"})
+        const {user_name} =  req.body;
+        return res.json({message: user_name})
+        // if(!user_name) return res.json({message: "Please enter your name"})
 
-         const paymentIntent = await stripe.paymentIntents.create({
-             amount: Math.round(50 * 100),
-             currency: 'brl',
-             payment_method_types: ["card"],
-             metadata: {name:user_name}
-         });
+        //  const paymentIntent = await stripe.paymentIntents.create({
+        //      amount: Math.round(50 * 100),
+        //      currency: 'brl',
+        //      payment_method_types: ["card"],
+        //      metadata: {name:user_name}
+        //  });
 
-         const clientSecret = paymentIntent.client_secret;
-         res.status(200).json({message: "Payment initiated", clientSecret});
+        //  const clientSecret = paymentIntent.client_secret;
+        //  res.status(200).json({message: "Payment initiated", clientSecret});
 
     } catch (error) {
         console.error(error)
