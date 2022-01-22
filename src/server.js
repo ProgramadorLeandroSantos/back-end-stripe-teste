@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.post("/pay", async (req, res) => {
     try {
-        const {user_name} = req.body;
+        const {user_name} = await req.body;
         if(!user_name) return res.json({message: "Please enter your name"})
 
          const paymentIntent = await stripe.paymentIntents.create({
