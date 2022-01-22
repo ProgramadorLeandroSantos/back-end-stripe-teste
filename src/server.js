@@ -14,6 +14,16 @@ if (PORT == null || PORT == "") {
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+    try {
+        return res.status(200).json({message: "Welcome to Stripe api test"})
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: 'Internal server error'})
+    }
+})
+
 app.post("/pay", async (req, res) => {
     try {
         const {name} = req.body;
