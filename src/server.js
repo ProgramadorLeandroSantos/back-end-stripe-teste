@@ -4,7 +4,11 @@ const cors = require('cors');
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 const app = express();
-const PORT = 3000;
+
+let PORT = process.env.PORT;
+if (PORT == null || PORT == "") {
+    PORT = 8000;
+}
 
 
 app.use(express.json());
